@@ -4,11 +4,17 @@ import java.net.*;
 public class Main {
 
     public static void main(String[] args) throws Exception  {
-        SwingUtilities.invokeLater(new Runnable() {
+        Controller controller = new Controller();
+        controller.start();
+
+
+        /*SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Window();
             }
-        });
+        });*/
+
+
         /*try {
             // open websocket
             final WebsocketClientEndpoint clientEndPoint = new WebsocketClientEndpoint(new URI("ws://0.0.0.0:27800"));
