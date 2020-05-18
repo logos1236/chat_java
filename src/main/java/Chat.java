@@ -49,7 +49,8 @@ public class Chat {
                                 for (ErrorAction error : data_result_action.data.error) {
                                     error_text.append(error.text+"\n");
                                 }
-                                JOptionPane.showMessageDialog(null, error_text);
+
+                                showError(error_text.toString());
                             }
 
                             if (data_result_action.data.success == 1) {
@@ -66,6 +67,22 @@ public class Chat {
                             if (!data_result_action.data.list.isEmpty()) {
                                 for (Message chat_message: data_result_action.data.list) {
                                     controller.getWindow().getField_chat().append(printMessage(chat_message));
+                                }
+                            }
+                        }
+
+                        //=== Ping
+                        if (data_set_message.type != null && data_set_message.type.equals("ping")) {
+                            pong();
+                        }
+
+                        //=== User list
+                        if (data_set_message.type != null && data_set_message.type.equals("user_list")) {
+                            DataSet.UserList data_result_action = g.fromJson(message, DataSet.UserList.class);
+
+                            if (!data_result_action.data.list.isEmpty()) {
+                                for (String user: data_result_action.data.list) {
+                                    controller.getWindow().getField_field_user_list().append(user+"\n");
                                 }
                             }
                         }
@@ -203,6 +220,13 @@ public class Chat {
         data.put("name", name);
         data.put("password",password);
         data.put("password_confirm",password_confirm);
+
+        sendData(data);
+    }
+
+    public void pong() {
+        Map<String,Object> data = new LinkedHashMap<>();
+        data.put("action", "pong");
 
         sendData(data);
     }

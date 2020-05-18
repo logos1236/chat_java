@@ -27,4 +27,14 @@ public class DataSet {
             public ArrayList<Message> list;
         }
     }
+
+    public class UserList {
+        public String type;
+        public UserSet data;
+
+        public class UserSet {
+            public int count;
+            public ArrayList<String> list;
+        }
+    }
 }

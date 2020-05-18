@@ -15,6 +15,11 @@ public class Window implements ActionListener {
         return field_chat;
     }
 
+    private JTextArea field_user_list = new JTextArea( 10, 10);
+    public JTextArea getField_field_user_list() {
+        return field_user_list;
+    }
+
     public Window(Controller controller) {
         this.controller = controller;
 
@@ -218,6 +223,32 @@ public class Window implements ActionListener {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.weightx = 0.5;
 
+        //=== Список пользователей
+            JLabel title_field_user_list = new JLabel("Пользователи");
+            constraints.gridx = 0;
+            constraints.gridy = gridy;
+            constraints.gridwidth = 3;
+            contents.add(title_field_user_list, constraints);
+            gridy++;
+
+            field_user_list = new JTextArea( 10, 10);
+            field_user_list.setToolTipText("Чат");
+            field_user_list.setAutoscrolls(true);
+            field_user_list.setEditable(false);
+            JScrollPane jsp_field_field_user_list = new JScrollPane(field_user_list);
+
+            constraints.fill = GridBagConstraints.HORIZONTAL;
+            constraints.gridx = 0;
+            constraints.gridy = gridy;
+            constraints.gridwidth = 3;
+            contents.add(jsp_field_field_user_list, constraints);
+
+            //=== Добавляем текст в поле
+            //field_chat.setText(chat.printMessage(chat.getMessage()));
+            //chat.field_chat = field_chat;
+
+            gridy++;
+
         //=== Поле чата
             JLabel title_field_chat = new JLabel("Чат");
             constraints.gridx = 0;
@@ -240,7 +271,6 @@ public class Window implements ActionListener {
 
             //=== Добавляем текст в поле
             //field_chat.setText(chat.printMessage(chat.getMessage()));
-
             //chat.field_chat = field_chat;
 
             gridy++;
